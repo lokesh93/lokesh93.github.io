@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300;400&display=swap" rel="stylesheet">
+    <title>Page Title</title>
+</head>
+<body style="background: black;font-family: Recursive;">
+
+    <div class="content-text" style="text-align: center;">
+        <h3 class="header show">Hi, My name is Lokesh Podipireddy</h3>
+        <h3 class="header">I am a Fullstack Developer  based out of Toronto, Ontario </h3>
+        <h3 class="header">I graduated with a B.A.Sc in Honours Computer Science From McMaster University</h3>
+        <h3 class="header">I have worked with a wide array of stack and technologies over my career. You can find more information on that below</h3>
+        <h6 style="color: white;">Click the basketball to Shoot. Scroll below to find out more about me.</h6>
+    </div>
+
+
+
+    <div class="basketball-court-parent">
+        <div class="scoreboard">
+            <div class="scoreboard-border">0</div>
+        </div>
+        <div class="basketball">
+            <div class="basketball-line-left">
+            </div>
+            <div class="basketball-line-middle">     
+            </div>
+            <div class="basketball-line-right">
+            </div>
+            <div class="basketball-line-horizontal">
+            </div>
+        </div>
+        <div class="basketball-pole">
+            <div class="basketball-backboard">
+                <div class="backboard-inner-square"></div>
+                <div class="rim"></div>
+            </div>
+        </div>
+        <div class="basketball-court">
+            <div class="basketball-court-lines">
+                <div class="basketball-key">
+                    <div class="top-of-key">
+
+                    </div>
+                </div>
+                <div class="basketball-halfcourt">
+                </div>
+                <div class="basketball-key-2">
+                    <div class="top-of-key-2"></div>
+                </div>
+            </div>       
+        </div>
+        <div class="basketball-pole-2">
+            <div class="basketball-backboard">
+                <div class="backboard-inner-square"></div>
+                <div class="rim"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="work-experience">
+        <h3 style="text-align: center;">About Me</h3>  
+
+        <p>I am a passionate technology enthusiast that gets giddy at any chance to tinker with new tech. For the past 4 years, 
+            I've been working fulltime as a Full Stack developer @ <a href="https://www.shoplogix.com" target="_blank">Shoplogix</a> with a focus on ReactJS and C# .NET. I've worked with other technology 
+            stacks such as Ruby on Rails for backend and EmberJS for frontend. I try to keep up with new frameworks and languages by 
+            experimenting with them on personal projects or internal tools for professional use.   
+        </p>
+        
+        <p>As you can tell by the design of this website that I'm a sport enthusiast with a slight obsession for basketball. 
+            So what better way to introduce myself than this page. The perfect collision of my two passions
+        </p>
+        
+    </div>
+
+    <div class="work-experience">
+        <h3 style="text-align: center;">Current Project</h3>  
+
+        <p>
+            I am currently teaching myself django in order to get a better understanding of python and potentially use some of it's exisiting
+            numPy modules. I started out by creating a simple application called SplitDecision. This application is a clone of the famous Splitwise
+            application which helps users split Bills between multiple users and keep tracks of debts. The links are below for the application
+            and the code repository.
+        </p>
+
+        <a href="https://splitdecision.herokuapp.com/about">SplitDecision</a>
+
+        <a href="https://www.github.com/lokesh93">Github Repo</a>
+
+               
+    </div>
+
+    <div class="work-experience">
+        <h3 style="text-align: center;">Contact Me</h3>  
+
+        <p>
+            You can contact me via email <a href="mailto:podipireddy5@gmail.com@">podipireddy5@gmail.com</a>
+        </p>
+
+               
+    </div>
+
+
+
+
+
+</body>
+<script>
+
+var shotCounter = 0;
+
+function changeHeader()
+{
+    let headers = document.getElementsByClassName("header");
+    for (var i = 0; i < headers.length; i++)
+    {
+        let h = headers[i];
+        if (i == shotCounter) 
+        {
+            h.setAttribute("class", "header show")
+        }
+        else
+        {
+            h.setAttribute("class", "header")
+        }
+    }
+}
+
+function updateScore()
+{
+    document.getElementsByClassName("scoreboard-border")[0].innerHTML = shotCounter;
+}
+
+function shootBall()
+{
+    shotCounter++;  
+    let basketball = document.getElementsByClassName("basketball")[0];
+    basketball.setAttribute("class","basketball basketball-shot");
+    setTimeout(() => { basketball.setAttribute("class", "basketball");  updateScore(); }, 1500);
+}
+
+
+function initializeBasketballClick()
+{
+    document.getElementsByClassName("basketball")[0].addEventListener("click", () => shootBall())
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    //listenToSpaceBar();
+    initializeBasketballClick();
+    console.log('DOM fully loaded and parsed');
+});
+
+</script>
