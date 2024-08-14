@@ -9,14 +9,15 @@
 <body style="background: black;font-family: Recursive;">
 
     <div class="content-text" style="text-align: center;">
-        <h3 class="header show">Hi, My name is Lokesh Podipireddy. I am a Fullstack Developer based out of Toronto, Ontario.</h3>
-        <h6 style="color:White">Click the basketball to shoot. Scroll downt to find out more about me.</h6>
+        <h3 class="header show">Hi, My name is Lokesh Podipireddy. I am a Software Engineer based out of Vancouver, British Columbia.</h3>
+        <h6 style="color:White">Click on one of the backboards to shoot. Scroll down to find out more about me!</h6>
     </div>
 
 
 
     <div class="basketball-court-parent">
         <div class="scoreboard">
+            <div class="scoreboard-border">0</div>
             <div class="scoreboard-border">0</div>
         </div>
         <div class="basketball">
@@ -62,15 +63,41 @@
         <h3 style="text-align: center;">About Me</h3>  
 
         <p>
-            I am a passionate technology enthusiast that gets giddy at any chance to tinker with new tech. For the past 4 years, 
-            I've been working fulltime as a Full Stack developer @ <a href="https://www.shoplogix.com" target="_blank">Shoplogix</a> with a 
-            focus on ReactJS and C# .NET. I've worked with other technology stacks such as Ruby on Rails for backend and EmberJS for frontend. 
-            I try to keep up with new frameworks and languages by experimenting with them on personal projects or internal tools for 
-            professional use.   
+            I am a passionate technologist that gets giddy at any chance to tinker with new tech. For the past 7 years, 
+            I've been working as a Software Engineer and currently working @ <a href="https://www.spoileralert.com" target="_blank">Spoiler Alert</a>. 
+            Below is a list of some of the technologies I've worked with throughout my career.
         </p>
+
+        <h3>Languages</h3>
+        <ul>
+          <li>JavaScript/Typescript</li>
+          <li>C#</li>
+          <li>Python</li>
+          <li>Ruby</li>
+          <li>PHP</li>
+          <li></li>
+        </ul>
+
+        <h3>Stacks and Frameworks</h3>
+        <ul>
+          <li>React</li>
+          <li>Graphql</li>
+          <li>MEAN</li>
+          <li>Ruby on Rails</li>
+          <li>EmberJS</li>
+          <li>Laravel</li>
+        </ul>
+
+        <h3>Other Tehnologies</h3>
+        <ul>
+          <li>Docker/Docker Compose</li>
+          <li>Kubernetes</li>
+          <li>Terraform</li>
+          <li>GCP/GKE</li>
+        </ul>
         
-        <p>As you can tell by the design of this website that I'm a sports enthusiast with a slight obsession for basketball. 
-            So what better way to introduce myself than this page. The perfect collision of my two passions. The above design was made using mostly
+        <p>As you can tell by the design of this website, I'm a basketball fan. 
+            So what better way to introduce myself than this page. The above design was made using mostly
             divs and css transitions/animations. SVGs were not used. The score gets updated via a simple js function.
         </p>
         
@@ -90,7 +117,8 @@
 
         <a href="https://www.github.com/lokesh93">Github Repo</a>
 
-               
+
+
     </div>
 
     <div class="work-experience">
@@ -110,7 +138,7 @@
 </body>
 <script>
 
-var shotCounter = 0;
+var shotCounter = [0,0];
 
 function changeHeader()
 {
@@ -129,28 +157,29 @@ function changeHeader()
     }
 }
 
-function updateScore()
+function updateScore(num)
 {
-    document.getElementsByClassName("scoreboard-border")[0].innerHTML = shotCounter;
+    document.getElementsByClassName("scoreboard-border")[num].innerHTML = shotCounter[num];
 }
 
-function shootBall()
+function shootBall(num)
 {
-    shotCounter++;  
+    const miss = Math.random() > 0.47;
+    shotCounter[num]+=!miss;  
     let basketball = document.getElementsByClassName("basketball")[0];
-    basketball.setAttribute("class","basketball basketball-shot");
-    setTimeout(() => { basketball.setAttribute("class", "basketball");  updateScore(); }, 1500);
+    basketball.setAttribute("class",`basketball basketball-shot-${num+1}${miss ? "-miss" : ""}`);
+    setTimeout(() => { basketball.setAttribute("class", "basketball");  updateScore(num); }, 1500);
 }
 
 
-function initializeBasketballClick()
+function initializeBackboardClick()
 {
-    document.getElementsByClassName("basketball")[0].addEventListener("click", () => shootBall())
+    document.getElementsByClassName("basketball-backboard")[0].addEventListener("click", () => shootBall(0))
+    document.getElementsByClassName("basketball-backboard")[1].addEventListener("click", () => shootBall(1))
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    //listenToSpaceBar();
-    initializeBasketballClick();
+    initializeBackboardClick()
     console.log('DOM fully loaded and parsed');
 });
 
